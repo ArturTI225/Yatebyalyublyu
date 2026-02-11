@@ -24,8 +24,6 @@ body{
     radial-gradient(900px 700px at 60% 90%, rgba(69,255,181,.12), transparent 70%),
     linear-gradient(160deg, var(--bg1), var(--bg2));
   overflow:hidden;
-
-  /* iPhone safe-area */
   padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -97,7 +95,6 @@ body{
 
 .arena{
   position:relative;
-  /* адаптивная высота под телефон */
   height: clamp(220px, 38vh, 320px);
   border-radius: 18px;
   border: 1px dashed rgba(255,255,255,.20);
@@ -119,30 +116,44 @@ body{
   border-radius: 999px;
 }
 
+/* Heart button with face */
 .heart{
   position:absolute;
   left:50%;
   top:50%;
   transform: translate(-50%,-50%);
-  width:56px;
-  height:56px;
-  border-radius: 18px;
-  border:1px solid rgba(255,255,255,.20);
-  background: linear-gradient(135deg, var(--pink), var(--vio));
-  box-shadow: 0 16px 40px rgba(0,0,0,.40);
-  display:grid;
-  place-items:center;
-  font-size: 22px;
+  width:64px;
+  height:64px;
+  border-radius:18px;
+  border:none;
+  background: none;
   cursor:pointer;
-  user-select:none;
-  transition: transform .08s ease, filter .2s ease;
+  overflow:hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  display:block;
   -webkit-tap-highlight-color: transparent;
-
-  /* удобнее для пальца */
-  min-height: 44px;
 }
-.heart:hover{filter:brightness(1.06)}
-.heart:active{transform: translate(-50%,-50%) scale(.98)}
+.heart-bg{
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  background: linear-gradient(135deg, var(--pink), var(--vio));
+}
+.face{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  object-fit:cover;
+  border:3px solid rgba(255,255,255,.95);
+  box-shadow: 0 10px 18px rgba(0,0,0,.35);
+  transition: transform .16s ease, filter .2s ease;
+}
+.heart:hover .face{ transform: translate(-50%,-50%) scale(1.08); }
+.heart:active .face{ transform: translate(-50%,-50%) scale(1.02); }
 
 .row{
   display:flex;
@@ -163,7 +174,7 @@ body{
   background: linear-gradient(135deg, var(--pink), var(--vio));
   color: rgba(255,255,255,.95);
   transition: transform .12s ease, filter .2s ease;
-  min-height: 44px; /* минимум для тапа */
+  min-height: 44px;
 }
 .btn:hover{filter:brightness(1.06)}
 .btn:active{transform: translateY(1px) scale(.99)}
@@ -207,24 +218,23 @@ body{
   position:relative;
 }
 
-.qTitle{
-  margin:0 0 8px;
-  font-size: 26px;
-}
-.qText{
-  margin:0 0 6px;
-  color: var(--muted);
-  line-height:1.45;
-}
+.qTitle{ margin:0 0 8px; font-size: 26px; }
+.qText{ margin:0 0 6px; color: var(--muted); line-height:1.45; }
 
-.result{margin-top:14px}
-.sticker{
-  width:min(520px, 100%);
+.result{ margin-top:14px; }
+.bigPic{
+  width:min(320px, 80%);
   margin: 0 auto;
-  border-radius: 22px;
+  border-radius: 26px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.16);
   background: rgba(0,0,0,.10);
+  box-shadow: 0 18px 50px rgba(0,0,0,.45);
+}
+.bigPic img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 /* Confetti */
@@ -244,9 +254,7 @@ body{
   filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
 }
 @keyframes fall{
-  to{
-    transform: translate3d(var(--dx), calc(100vh + 60px), 0) rotate(var(--rot));
-  }
+  to{ transform: translate3d(var(--dx), calc(100vh + 60px), 0) rotate(var(--rot)); }
 }
 
 .btn:focus-visible, .heart:focus-visible{
@@ -254,11 +262,10 @@ body{
   outline-offset:3px;
 }
 
-/* Телефон: кнопки в столбик и чуть плотнее */
+/* Phone layout */
 @media (max-width: 520px){
   .wrap{padding: 18px}
   .card{padding: 20px 18px 16px}
-
   .subtitle{font-size:14px}
 
   .row{
@@ -274,5 +281,5 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce){
-  .btn, .heart {transition:none}
+  .btn, .face {transition:none}
 }
