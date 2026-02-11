@@ -3,134 +3,112 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Валентинка-спецоперация 💘</title>
-  <meta name="description" content="Оригинальная валентинка: мини-игра, секретный режим, персонализация, открытка-скрин и магия." />
+  <title>Алиса, будешь моей валентинкой? 💘</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="grid" aria-hidden="true"></div>
-  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="bg" aria-hidden="true"></div>
   <div class="confetti" id="confetti" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <div class="app" id="app">
-      <header class="topbar">
-        <div class="dots" aria-hidden="true">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        </div>
-        <div class="brand">
-          Валентинка-спецоперация 💘
-          <span class="pill" id="datePill"></span>
-        </div>
+  <main class="wrap">
+    <section class="card" aria-live="polite">
+      <div class="top">
+        <span class="pill">14 февраля 💌</span>
+        <span class="pill ghost" id="scorePill">Сердца: 0 / 7</span>
+      </div>
 
-        <div class="spacer"></div>
+      <h1 class="title">
+        Алиса, привет ✨
+      </h1>
+      <p class="subtitle">
+        Маленький квест: поймай <b>7</b> сердечек. После этого — важный вопрос 😉
+      </p>
 
-        <div class="minirow">
-          <button class="btn ghost" id="soundBtn" type="button">🔊 Звук: выкл</button>
-          <button class="btn ghost" id="cardBtn" type="button">📸 Открытка</button>
-          <button class="btn" id="startBtn" type="button">Запустить</button>
-        </div>
-      </header>
+      <div class="arena" id="arena" role="application" aria-label="Мини-игра: поймай сердечко">
+        <button class="heart" id="heart" type="button" aria-label="Поймать сердечко">💖</button>
+        <div class="arenaHint" id="arenaHint">Кликай по сердечку, пока оно не убежало!</div>
+      </div>
 
-      <main class="content">
-        <!-- LEFT -->
-        <section class="panel">
-          <h2 class="h">Квест-письмо, которое открывается сердцем ✨</h2>
-          <p class="muted">
-            Введи имя и подпись. Потом — мини-игра и финальный вопрос.
-            <span class="kbd">Пасхалка:</span> набери <span class="kbd">LOVE</span>.
-          </p>
+      <div class="row">
+        <button class="btn ghost" id="resetBtn" type="button">↻ Сброс</button>
+        <button class="btn" id="skipBtn" type="button">Пропустить игру</button>
+      </div>
 
-          <div class="fields">
-            <label class="field">
-              <span class="ico">👤</span>
-              <input id="toName" type="text" placeholder="Кому (например, Аня)" autocomplete="off" />
-            </label>
+      <p class="mini muted" id="miniText">
+        Подсказка: чем ближе к победе — тем быстрее сердечко.
+      </p>
+    </section>
+  </main>
 
-            <label class="field">
-              <span class="ico">✍️</span>
-              <input id="fromName" type="text" placeholder="От кого (например, Макс)" autocomplete="off" />
-            </label>
-          </div>
-
-          <div class="letter" aria-live="polite">
-            <div class="type" id="type"></div><span class="cursor" id="cursor"></span>
-          </div>
-
-          <div class="stampRow">
-            <div class="stamp">
-              <div class="stIco" aria-hidden="true">🕵️‍♀️</div>
-              <div>
-                <div class="stTitle">Код миссии</div>
-                <small class="muted">встроен в открытку (кнопка “📸 Открытка”)</small>
-              </div>
-              <div class="code" id="code">— — — —</div>
-            </div>
-
-            <button class="btn ghost" id="resetBtn" type="button">↻ Сброс</button>
-          </div>
-
-          <div class="tip muted" id="tip">
-            Совет: включи звук и покрути “ритм признания” — атмосфера меняется.
-          </div>
-        </section>
-
-        <!-- RIGHT -->
-        <section class="panel">
-          <div class="missionHead">
-            <h2 class="h" style="margin:0">Миссия: “Зарядить сердце”</h2>
-            <div class="meter">
-              <div class="bar" aria-hidden="true"><i id="bar"></i></div>
-              <div class="count" id="count">0 / 9</div>
-            </div>
-          </div>
-
-          <div class="board" id="board" role="application" aria-label="Мини-игра: поймай сердечко-искру">
-            <button class="spark" id="spark" type="button" aria-label="Лови сердечко">💖</button>
-            <div class="glitchText" id="glitchText" aria-hidden="true">ACCESS GRANTED</div>
-          </div>
-
-          <p class="hint" id="hint">
-            Поймай <b>9</b> сердечек. Чем ближе к финалу — тем “умнее” искра 😈
-          </p>
-
-          <div class="rhythm">
-            <div class="rhythmTop">
-              <div class="rhTitle">Ритм признания</div>
-              <div class="beat" id="beat">BPM: 96</div>
-            </div>
-            <input id="bpm" type="range" min="60" max="140" value="96" />
-            <div class="muted small">
-              Ритм влияет на “дыхание” интерфейса и скорость искры.
-            </div>
-          </div>
-
-          <div class="row">
-            <button class="btn ghost" id="skipBtn" type="button">Открыть письмо</button>
-            <button class="btn ok" id="finalBtn" type="button">К вопросу 💘</button>
-          </div>
-        </section>
-      </main>
-    </div>
-  </div>
-
-  <!-- MODAL -->
+  <!-- Question modal -->
   <div class="overlay" id="overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
-      <h1 id="qTitle">Итак…</h1>
-      <p id="qText"></p>
+      <h2 class="qTitle" id="qTitle">Итак…</h2>
+      <p class="qText" id="qText">Алиса, хочешь стать моей валентинкой? 💘</p>
 
-      <div class="choice">
-        <button class="btn ok" id="yesBtn" type="button">Да 💘</button>
-        <button class="btn no" id="noBtn" type="button">Нет 🙈</button>
+      <div class="row center">
+        <button class="btn yes" id="yesBtn" type="button">Да ❤️</button>
         <button class="btn ghost" id="closeBtn" type="button">Закрыть</button>
       </div>
 
-      <div class="tiny" id="tiny"></div>
+      <div class="result" id="result" hidden>
+        <div class="sticker" aria-hidden="true">
+          <!-- Cute SVG -->
+          <svg viewBox="0 0 420 260" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffd1e3"/>
+                <stop offset="1" stop-color="#ff4d8d"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8a5cff"/>
+                <stop offset="1" stop-color="#ff4d8d"/>
+              </linearGradient>
+              <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".35"/>
+              </filter>
+            </defs>
+
+            <rect x="18" y="18" width="384" height="224" rx="26" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)" filter="url(#s)"/>
+            <circle cx="90" cy="78" r="48" fill="url(#g2)" opacity=".55"/>
+            <circle cx="340" cy="70" r="58" fill="url(#g1)" opacity=".40"/>
+            <circle cx="250" cy="210" r="72" fill="#45ffb5" opacity=".18"/>
+
+            <!-- Bear -->
+            <g transform="translate(110,70)">
+              <circle cx="58" cy="58" r="54" fill="rgba(255,255,255,.92)"/>
+              <circle cx="18" cy="25" r="18" fill="rgba(255,255,255,.92)"/>
+              <circle cx="98" cy="25" r="18" fill="rgba(255,255,255,.92)"/>
+
+              <circle cx="40" cy="55" r="7" fill="#1b1020"/>
+              <circle cx="76" cy="55" r="7" fill="#1b1020"/>
+              <path d="M58 62c10 0 18 8 18 18 0 12-12 20-18 20s-18-8-18-20c0-10 8-18 18-18z" fill="#ffd1e3" stroke="#1b1020" stroke-opacity=".12"/>
+
+              <path d="M44 86c10 10 22 10 28 0" fill="none" stroke="#1b1020" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
+            </g>
+
+            <!-- Big heart -->
+            <g transform="translate(255,78) scale(1.05)">
+              <path d="M60 30c0-16 20-24 32-12 12-12 32-4 32 12 0 24-28 40-32 42-4-2-32-18-32-42z"
+                    fill="url(#g1)" />
+              <path d="M60 30c0-16 20-24 32-12 12-12 32-4 32 12 0 24-28 40-32 42-4-2-32-18-32-42z"
+                    fill="none" stroke="rgba(255,255,255,.65)" stroke-width="3" opacity=".6"/>
+            </g>
+
+            <text x="210" y="215" text-anchor="middle"
+                  font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+                  font-size="22" fill="rgba(255,255,255,.92)" font-weight="700">
+              Ура! Ты моя валентинка 💖
+            </text>
+          </svg>
+        </div>
+
+        <p class="mini center" id="finalLine">
+          Алиса, это официально 🥰
+        </p>
+      </div>
     </div>
   </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>
