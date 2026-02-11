@@ -2,8 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Алиса, будешь моей валентинкой? 💘</title>
+  <meta name="description" content="Мини-игра с сердечками и милый вопрос в конце." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,9 +18,9 @@
         <span class="pill ghost" id="scorePill">Сердца: 0 / 7</span>
       </div>
 
-      <h1 class="title">
-        Алиса, привет ✨
-      </h1>
+      <h1 class="title">Алиса, привет ✨</h1>
+      <p class="from">от медвежонка❤️🐻</p>
+
       <p class="subtitle">
         Маленький квест: поймай <b>7</b> сердечек. После этого — важный вопрос 😉
       </p>
@@ -45,6 +46,7 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
       <h2 class="qTitle" id="qTitle">Итак…</h2>
       <p class="qText" id="qText">Алиса, хочешь стать моей валентинкой? 💘</p>
+      <p class="mini muted center">— от медвежонка❤️🐻</p>
 
       <div class="row center">
         <button class="btn yes" id="yesBtn" type="button">Да ❤️</button>
@@ -83,7 +85,6 @@
               <circle cx="40" cy="55" r="7" fill="#1b1020"/>
               <circle cx="76" cy="55" r="7" fill="#1b1020"/>
               <path d="M58 62c10 0 18 8 18 18 0 12-12 20-18 20s-18-8-18-20c0-10 8-18 18-18z" fill="#ffd1e3" stroke="#1b1020" stroke-opacity=".12"/>
-
               <path d="M44 86c10 10 22 10 28 0" fill="none" stroke="#1b1020" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
             </g>
 
@@ -103,9 +104,7 @@
           </svg>
         </div>
 
-        <p class="mini center" id="finalLine">
-          Алиса, это официально 🥰
-        </p>
+        <p class="mini center" id="finalLine">Алиса, это официально 🥰</p>
       </div>
     </div>
   </div>
