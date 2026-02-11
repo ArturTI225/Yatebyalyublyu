@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Валентинка-спецоперация 💘</title>
+  <meta name="description" content="Оригинальная валентинка: мини-игра, секретный режим, персонализация, открытка-скрин и магия." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grid" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="app" id="app">
+      <header class="topbar">
+        <div class="dots" aria-hidden="true">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        </div>
+        <div class="brand">
+          Валентинка-спецоперация 💘
+          <span class="pill" id="datePill"></span>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="minirow">
+          <button class="btn ghost" id="soundBtn" type="button">🔊 Звук: выкл</button>
+          <button class="btn ghost" id="cardBtn" type="button">📸 Открытка</button>
+          <button class="btn" id="startBtn" type="button">Запустить</button>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- LEFT -->
+        <section class="panel">
+          <h2 class="h">Квест-письмо, которое открывается сердцем ✨</h2>
+          <p class="muted">
+            Введи имя и подпись. Потом — мини-игра и финальный вопрос.
+            <span class="kbd">Пасхалка:</span> набери <span class="kbd">LOVE</span>.
+          </p>
+
+          <div class="fields">
+            <label class="field">
+              <span class="ico">👤</span>
+              <input id="toName" type="text" placeholder="Кому (например, Аня)" autocomplete="off" />
+            </label>
+
+            <label class="field">
+              <span class="ico">✍️</span>
+              <input id="fromName" type="text" placeholder="От кого (например, Макс)" autocomplete="off" />
+            </label>
+          </div>
+
+          <div class="letter" aria-live="polite">
+            <div class="type" id="type"></div><span class="cursor" id="cursor"></span>
+          </div>
+
+          <div class="stampRow">
+            <div class="stamp">
+              <div class="stIco" aria-hidden="true">🕵️‍♀️</div>
+              <div>
+                <div class="stTitle">Код миссии</div>
+                <small class="muted">встроен в открытку (кнопка “📸 Открытка”)</small>
+              </div>
+              <div class="code" id="code">— — — —</div>
+            </div>
+
+            <button class="btn ghost" id="resetBtn" type="button">↻ Сброс</button>
+          </div>
+
+          <div class="tip muted" id="tip">
+            Совет: включи звук и покрути “ритм признания” — атмосфера меняется.
+          </div>
+        </section>
+
+        <!-- RIGHT -->
+        <section class="panel">
+          <div class="missionHead">
+            <h2 class="h" style="margin:0">Миссия: “Зарядить сердце”</h2>
+            <div class="meter">
+              <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+              <div class="count" id="count">0 / 9</div>
+            </div>
+          </div>
+
+          <div class="board" id="board" role="application" aria-label="Мини-игра: поймай сердечко-искру">
+            <button class="spark" id="spark" type="button" aria-label="Лови сердечко">💖</button>
+            <div class="glitchText" id="glitchText" aria-hidden="true">ACCESS GRANTED</div>
+          </div>
+
+          <p class="hint" id="hint">
+            Поймай <b>9</b> сердечек. Чем ближе к финалу — тем “умнее” искра 😈
+          </p>
+
+          <div class="rhythm">
+            <div class="rhythmTop">
+              <div class="rhTitle">Ритм признания</div>
+              <div class="beat" id="beat">BPM: 96</div>
+            </div>
+            <input id="bpm" type="range" min="60" max="140" value="96" />
+            <div class="muted small">
+              Ритм влияет на “дыхание” интерфейса и скорость искры.
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn ghost" id="skipBtn" type="button">Открыть письмо</button>
+            <button class="btn ok" id="finalBtn" type="button">К вопросу 💘</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+      <h1 id="qTitle">Итак…</h1>
+      <p id="qText"></p>
+
+      <div class="choice">
+        <button class="btn ok" id="yesBtn" type="button">Да 💘</button>
+        <button class="btn no" id="noBtn" type="button">Нет 🙈</button>
+        <button class="btn ghost" id="closeBtn" type="button">Закрыть</button>
+      </div>
+
+      <div class="tiny" id="tiny"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
