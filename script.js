@@ -37,7 +37,7 @@ function setScore(v){
 
 function placeHeart(){
   const r = arena.getBoundingClientRect();
-  const pad = 38;
+  const pad = 40; // чуть больше — чтобы не прилипало к краям на телефоне
   const x = rand(pad, r.width - pad);
   const y = rand(pad, r.height - pad);
   heart.style.left = x + "px";
@@ -88,7 +88,6 @@ overlay.addEventListener("click", (e)=>{ if(e.target === overlay) closeQuestion(
 yesBtn.addEventListener("click", ()=>{
   result.hidden = false;
   throwConfetti(180);
-  // маленький “вау”
   $("#qTitle").textContent = "Урааа! 🥰";
   $("#qText").textContent = "Алиса, тогда это официально: ты моя валентинка 💖";
 });
@@ -108,6 +107,7 @@ function resetGame(){
   score = 0;
   active = true;
   result.hidden = true;
+
   $("#qTitle").textContent = "Итак…";
   $("#qText").textContent = "Алиса, хочешь стать моей валентинкой? 💘";
 
