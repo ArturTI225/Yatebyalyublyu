@@ -13,6 +13,7 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
 body{
   margin:0;
   color:var(--text);
@@ -23,6 +24,9 @@ body{
     radial-gradient(900px 700px at 60% 90%, rgba(69,255,181,.12), transparent 70%),
     linear-gradient(160deg, var(--bg1), var(--bg2));
   overflow:hidden;
+
+  /* iPhone safe-area */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .bg{
@@ -72,11 +76,19 @@ body{
 .pill.ghost{opacity:.9}
 
 .title{
-  margin: 16px 0 8px;
+  margin: 16px 0 6px;
   font-size: clamp(26px, 4vw, 40px);
   line-height:1.1;
   letter-spacing:.2px;
 }
+
+.from{
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.86);
+  font-weight: 750;
+  letter-spacing: .2px;
+}
+
 .subtitle{
   margin: 0 0 14px;
   color: var(--muted);
@@ -85,7 +97,8 @@ body{
 
 .arena{
   position:relative;
-  height: 290px;
+  /* адаптивная высота под телефон */
+  height: clamp(220px, 38vh, 320px);
   border-radius: 18px;
   border: 1px dashed rgba(255,255,255,.20);
   background:
@@ -123,6 +136,10 @@ body{
   cursor:pointer;
   user-select:none;
   transition: transform .08s ease, filter .2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  /* удобнее для пальца */
+  min-height: 44px;
 }
 .heart:hover{filter:brightness(1.06)}
 .heart:active{transform: translate(-50%,-50%) scale(.98)}
@@ -146,6 +163,7 @@ body{
   background: linear-gradient(135deg, var(--pink), var(--vio));
   color: rgba(255,255,255,.95);
   transition: transform .12s ease, filter .2s ease;
+  min-height: 44px; /* минимум для тапа */
 }
 .btn:hover{filter:brightness(1.06)}
 .btn:active{transform: translateY(1px) scale(.99)}
@@ -194,7 +212,7 @@ body{
   font-size: 26px;
 }
 .qText{
-  margin:0 0 12px;
+  margin:0 0 6px;
   color: var(--muted);
   line-height:1.45;
 }
@@ -228,6 +246,30 @@ body{
 @keyframes fall{
   to{
     transform: translate3d(var(--dx), calc(100vh + 60px), 0) rotate(var(--rot));
+  }
+}
+
+.btn:focus-visible, .heart:focus-visible{
+  outline:2px solid rgba(255,255,255,.9);
+  outline-offset:3px;
+}
+
+/* Телефон: кнопки в столбик и чуть плотнее */
+@media (max-width: 520px){
+  .wrap{padding: 18px}
+  .card{padding: 20px 18px 16px}
+
+  .subtitle{font-size:14px}
+
+  .row{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn{width:100%}
+
+  .arenaHint{
+    left:10px; right:10px; bottom:10px;
+    text-align:center;
   }
 }
 
