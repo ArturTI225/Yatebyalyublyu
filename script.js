@@ -37,7 +37,7 @@ function setScore(v){
 
 function placeHeart(){
   const r = arena.getBoundingClientRect();
-  const pad = 40; // чуть больше — чтобы не прилипало к краям на телефоне
+  const pad = 44; // чтобы не липло к краям на телефоне
   const x = rand(pad, r.width - pad);
   const y = rand(pad, r.height - pad);
   heart.style.left = x + "px";
@@ -66,7 +66,6 @@ function scheduleMove(){
 
 heart.addEventListener("click", ()=>{
   if(!active) return;
-  heart.textContent = pick(["💖","💘","💗","💞"]);
   setScore(score + 1);
   placeHeart();
   scheduleMove();
@@ -92,9 +91,7 @@ yesBtn.addEventListener("click", ()=>{
   $("#qText").textContent = "Алиса, тогда это официально: ты моя валентинка 💖";
 });
 
-resetBtn.addEventListener("click", ()=>{
-  resetGame();
-});
+resetBtn.addEventListener("click", resetGame);
 
 skipBtn.addEventListener("click", ()=>{
   active = false;
@@ -111,8 +108,7 @@ function resetGame(){
   $("#qTitle").textContent = "Итак…";
   $("#qText").textContent = "Алиса, хочешь стать моей валентинкой? 💘";
 
-  heart.style.display = "grid";
-  heart.textContent = "💖";
+  heart.style.display = "block";
   arenaHint.textContent = "Кликай по сердечку, пока оно не убежало!";
   setScore(0);
   placeHeart();
