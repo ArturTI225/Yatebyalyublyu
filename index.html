@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Алиса ✨</title>
+  <title>Для моей звёздочки Алиски 💖</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -19,12 +19,27 @@
         <div class="pill ghost">Сердца: <span id="score">0</span> / 7</div>
       </div>
 
-      <h1 class="title">Алиса, привет ✨</h1>
+      <h1 class="title">Алиска, привет ✨</h1>
       <p class="sub">Маленький квест: поймай 7 сердечек. После этого — важный вопрос 😉</p>
 
       <div class="arena" id="arena">
         <div class="arenaNote" id="arenaNote">Кликай по сердечку, пока оно не убежало!</div>
-        <div class="heart" id="heart" aria-label="сердечко"></div>
+
+        <!-- Сердечко с фото -->
+        <div class="photoHeart" id="heart" role="button" aria-label="Сердечко" tabindex="0">
+          <!-- SVG маска: одно настоящее сердце -->
+          <svg viewBox="0 0 100 90" class="heartSvg" aria-hidden="true">
+            <defs>
+              <clipPath id="heartClip">
+                <path d="M50 84C30 66 6 52 6 28C6 12 18 4 30 4C40 4 48 12 50 16C52 12 60 4 70 4C82 4 94 12 94 28C94 52 70 66 50 84Z"/>
+              </clipPath>
+            </defs>
+            <image href="IMG_1218.png" x="0" y="0" width="100" height="90"
+                   preserveAspectRatio="xMidYMid slice"
+                   clip-path="url(#heartClip)"></image>
+            <path class="heartStroke" d="M50 84C30 66 6 52 6 28C6 12 18 4 30 4C40 4 48 12 50 16C52 12 60 4 70 4C82 4 94 12 94 28C94 52 70 66 50 84Z"/>
+          </svg>
+        </div>
       </div>
 
       <div class="row">
@@ -37,20 +52,31 @@
     </section>
   </main>
 
-  <div class="overlay" id="overlay" aria-hidden="true">
+  <!-- Модалка 1: вопрос -->
+  <div class="overlay" id="overlayQ" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <h2 class="mTitle">Есть один вопрос…</h2>
-      <p class="mText">Алиса, хочешь стать моей валентинкой? 💖</p>
+      <p class="mText">Алиска, хочешь стать моей валентинкой? 💖</p>
 
       <div class="buttons">
-        <button id="yesBtn" class="heartBtn" type="button" aria-label="Да"></button>
+        <button id="yesBtn" class="yesBtn" type="button">Да 💘</button>
         <button id="noBtn" class="btn ghost noBtn" type="button">Нет</button>
       </div>
 
-      <div class="final" id="final" hidden>
-        <h3>Спасибо, что сказала «да» 💞</h3>
-        <p>Этот момент я запомню.</p>
-        <small>А теперь… закрой глаза на пару секунд 🌷</small>
+      <div class="tiny" id="noHint"></div>
+    </div>
+  </div>
+
+  <!-- Модалка 2: финал -->
+  <div class="overlay" id="overlayFinal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 class="mTitle">Урааа! 🥰</h2>
+      <p class="mText">Спасибо, что сказала «да» 💞</p>
+      <p class="mText">Этот момент я запомню.</p>
+      <p class="mText"><b>А теперь…</b></p>
+
+      <div class="buttons">
+        <button id="closeBtn" class="btn ghost" type="button">Закрыть</button>
       </div>
     </div>
   </div>
