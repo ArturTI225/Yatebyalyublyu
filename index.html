@@ -1,70 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Алиса, будешь моей валентинкой? 💘</title>
-  <meta name="description" content="Мини-игра и милый вопрос в конце." />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Алисы 💫</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="confetti" id="confetti" aria-hidden="true"></div>
 
-  <main class="wrap">
-    <section class="card" aria-live="polite">
-      <div class="top">
-        <span class="pill">14 февраля 💌</span>
-        <span class="pill ghost" id="scorePill">Сердца: 0 / 7</span>
-      </div>
+<div class="stars"></div>
 
-      <h1 class="title">Алиса, привет ✨</h1>
-      <p class="from">от медвежонка❤️🐻</p>
+<div class="container">
 
-      <p class="subtitle">
-        Маленький квест: поймай <b>7</b> сердечек. После этого — важный вопрос 😉
-      </p>
+  <div class="card" id="card">
+    <h1>Алиса ✨</h1>
 
-      <div class="arena" id="arena" role="application" aria-label="Мини-игра: поймай сердечко">
-        <button class="heart" id="heart" type="button" aria-label="Поймать сердечко">
-          <span class="heart-bg" aria-hidden="true"></span>
-          <img class="face" src="IMG_1218.png" alt="медвежонок" />
-        </button>
-        <div class="arenaHint" id="arenaHint">Кликай по сердечку, пока оно не убежало!</div>
-      </div>
+    <p class="text" id="text">
+      Иногда среди миллионов огней<br>
+      важна только одна звезда.
+    </p>
 
-      <div class="row">
-        <button class="btn ghost" id="resetBtn" type="button">↻ Сброс</button>
-        <button class="btn" id="skipBtn" type="button">Пропустить игру</button>
-      </div>
+    <button id="nextBtn">Дальше</button>
 
-      <p class="mini muted" id="miniText">
-        Подсказка: чем ближе к победе — тем быстрее сердечко.
-      </p>
-    </section>
-  </main>
-
-  <!-- Question modal -->
-  <div class="overlay" id="overlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
-      <h2 class="qTitle" id="qTitle">Итак…</h2>
-      <p class="qText" id="qText">Алиса, хочешь стать моей валентинкой? 💘</p>
-      <p class="mini muted center">— от медвежонка❤️🐻</p>
-
-      <div class="row center">
-        <button class="btn yes" id="yesBtn" type="button">Да ❤️</button>
-        <button class="btn ghost" id="closeBtn" type="button">Закрыть</button>
-      </div>
-
-      <div class="result" id="result" hidden>
-        <div class="bigPic">
-          <img src="IMG_1218.png" alt="медвежонок" />
-        </div>
-        <p class="mini center" id="finalLine">Ура! Теперь это официально 🥰</p>
-      </div>
+    <div class="signature">
+      — от медвежонка 🐻
     </div>
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Есть один вопрос…</h2>
+    <p>Алиса, хочешь стать моей валентинкой? 💖</p>
+
+    <div class="buttons">
+      <button id="yesBtn" class="yes">Да 💘</button>
+      <button id="noBtn" class="no">Нет</button>
+    </div>
+
+    <div class="final" id="final" hidden>
+      <h3>Спасибо, что сказала «да» 💞</h3>
+      <p>Этот момент я запомню.</p>
+      <small>А теперь… закрой глаза на пару секунд 🌷</small>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
