@@ -10,9 +10,31 @@ body{
   overflow:hidden;
 }
 
+.stars{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 70% 40%, white, transparent),
+    radial-gradient(1px 1px at 40% 80%, white, transparent);
+  opacity:.15;
+  pointer-events:none;
+}
+
+.music{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;
+  padding:6px 12px;
+  color:white;
+  cursor:pointer;
+}
+
 .container{
   text-align:center;
-  padding:20px;
 }
 
 .card{
@@ -22,45 +44,31 @@ body{
   backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 20px 60px rgba(0,0,0,.5);
-  animation: breathe 6s infinite ease-in-out;
 }
 
-@keyframes breathe{
-  0%,100%{ transform: scale(1); }
-  50%{ transform: scale(.995); }
-}
-
-h1{
-  margin-top:0;
-}
-
-.text{
+.arena{
+  position:relative;
+  height:200px;
   margin:20px 0;
-  font-size:18px;
-  line-height:1.6;
-  min-height:60px;
-  transition: opacity .5s ease;
 }
 
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:30px;
+.heart{
+  width:50px;
+  height:50px;
   background:linear-gradient(135deg,#ff4d8d,#8a5cff);
-  color:white;
-  font-size:16px;
+  position:absolute;
+  border-radius:50%;
   cursor:pointer;
-  transition:.3s;
+  animation:pulse 1.5s infinite;
 }
 
-button:hover{
-  transform:scale(1.05);
+@keyframes pulse{
+  0%,100%{ transform:scale(1);}
+  50%{ transform:scale(1.15);}
 }
 
-.signature{
-  margin-top:20px;
-  font-size:14px;
-  opacity:.7;
+.score{
+  margin-top:10px;
 }
 
 .overlay{
@@ -73,6 +81,20 @@ button:hover{
   align-items:center;
 }
 
+.flash{
+  position:absolute;
+  inset:0;
+  background:white;
+  opacity:0;
+  animation:flash 1s forwards;
+}
+
+@keyframes flash{
+  0%{opacity:0}
+  50%{opacity:.6}
+  100%{opacity:0}
+}
+
 .modal{
   background:rgba(255,255,255,.08);
   padding:30px;
@@ -80,38 +102,45 @@ button:hover{
   text-align:center;
   border:1px solid rgba(255,255,255,.15);
   box-shadow:0 20px 70px rgba(0,0,0,.6);
-  animation: pop .4s ease;
-}
-
-@keyframes pop{
-  from{ transform:scale(.8); opacity:0; }
-  to{ transform:scale(1); opacity:1; }
+  position:relative;
 }
 
 .buttons{
   margin-top:20px;
 }
 
-.yes{
-  background:linear-gradient(135deg,#45ffb5,#8a5cff);
-  margin-right:10px;
+.heartBtn{
+  width:60px;
+  height:60px;
+  background:linear-gradient(135deg,#ff4d8d,#8a5cff);
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  animation:pulse 1.2s infinite;
 }
 
 .no{
   background:rgba(255,255,255,.15);
+  border:none;
+  border-radius:20px;
+  padding:10px 20px;
+  color:white;
+  margin-left:10px;
 }
 
 .final{
   margin-top:20px;
 }
 
-.stars{
+/* Лепестки */
+.petal{
   position:fixed;
-  inset:0;
-  background:
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(1px 1px at 70% 40%, white, transparent),
-    radial-gradient(1px 1px at 40% 80%, white, transparent);
-  opacity:.15;
-  pointer-events:none;
+  top:-40px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
 }
