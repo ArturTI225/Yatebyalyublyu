@@ -10,17 +10,23 @@
 
 <div class="stars"></div>
 
+<button id="musicToggle" class="music">🔈 Музыка</button>
+
 <div class="container">
 
   <div class="card" id="card">
     <h1>Алиса ✨</h1>
 
-    <p class="text" id="text">
-      Иногда среди миллионов огней<br>
-      важна только одна звезда.
+    <p class="text">
+      Поймай 7 сердечек 💖<br>
+      Потом будет важный вопрос…
     </p>
 
-    <button id="nextBtn">Дальше</button>
+    <div class="arena" id="arena">
+      <div class="heart" id="heart"></div>
+    </div>
+
+    <div class="score">Сердца: <span id="score">0</span> / 7</div>
 
     <div class="signature">
       — от медвежонка 🐻
@@ -30,12 +36,14 @@
 </div>
 
 <div class="overlay" id="overlay">
+  <div class="flash"></div>
+
   <div class="modal">
     <h2>Есть один вопрос…</h2>
     <p>Алиса, хочешь стать моей валентинкой? 💖</p>
 
     <div class="buttons">
-      <button id="yesBtn" class="yes">Да 💘</button>
+      <button id="yesBtn" class="heartBtn"></button>
       <button id="noBtn" class="no">Нет</button>
     </div>
 
@@ -46,6 +54,8 @@
     </div>
   </div>
 </div>
+
+<audio id="music" src="music.mp3" loop></audio>
 
 <script src="script.js"></script>
 </body>
