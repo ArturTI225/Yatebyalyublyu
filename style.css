@@ -27,7 +27,6 @@ body{
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* star dust background */
 .stars{
   position:fixed; inset:0; pointer-events:none;
   background:
@@ -39,7 +38,6 @@ body{
   mix-blend-mode: screen;
 }
 
-/* music button */
 .music{
   position:fixed;
   right:14px; top:14px;
@@ -50,10 +48,9 @@ body{
   color:rgba(255,255,255,.92);
   cursor:pointer;
   backdrop-filter: blur(10px);
-  z-index:5;
+  z-index:6;
 }
 
-/* layout */
 .wrap{
   min-height:100%;
   display:grid;
@@ -100,10 +97,9 @@ body{
   line-height:1.45;
 }
 
-/* arena */
 .arena{
   position:relative;
-  height: clamp(220px, 38vh, 320px);
+  height: clamp(240px, 40vh, 340px);
   border-radius:18px;
   border:1px dashed rgba(255,255,255,.20);
   background:
@@ -113,7 +109,6 @@ body{
   overflow:hidden;
 }
 
-/* note inside arena */
 .arenaNote{
   position:absolute;
   left:50%;
@@ -122,69 +117,52 @@ body{
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 700;
-  color: rgba(255,255,255,.88);
+  font-weight: 800;
+  color: rgba(255,255,255,.9);
   background: rgba(0,0,0,.25);
   border: 1px solid rgba(255,255,255,.16);
   backdrop-filter: blur(10px);
-  opacity:1;
   pointer-events:none;
-  transition: opacity 220ms ease, transform 220ms ease;
+  white-space:nowrap;
 }
 
-/* ✅ iPhone-safe heart with your photo */
-.heart{
+/* ✅ настоящее сердце с фото через SVG */
+.photoHeart{
   position:absolute;
-  width:60px;
-  height:54px;
+  width:82px;
+  height:74px;
   cursor:pointer;
-  animation:pulse 1.2s infinite ease-in-out;
-  filter: drop-shadow(0 0 18px rgba(255,77,141,.6));
-  transform: rotate(-45deg);
-  background: url("IMG_1218.png") center/cover no-repeat;
+  filter: drop-shadow(0 0 20px rgba(255,77,141,.55));
+  animation: pulse 1.15s infinite ease-in-out;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+}
+.photoHeart:active{ transform: scale(.98); }
+
+.heartSvg{ width:100%; height:100%; display:block; }
+.heartStroke{
+  fill:none;
+  stroke: rgba(255,255,255,.35);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 10px rgba(255,77,141,.35));
 }
 
-/* top circles */
-.heart::before,
-.heart::after{
-  content:"";
-  position:absolute;
-  width:60px;
-  height:54px;
-  background: url("IMG_1218.png") center/cover no-repeat;
-  border-radius:50%;
-}
-
-.heart::before{
-  top:-27px;
-  left:0;
-}
-
-.heart::after{
-  left:27px;
-  top:0;
-}
-
-/* pulse */
 @keyframes pulse{
-  0%,100%{ transform: rotate(-45deg) scale(1); }
-  50%{ transform: rotate(-45deg) scale(1.14); }
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.14); }
 }
 
-/* shake on 6/7 */
-.heart.shake{
+.photoHeart.shake{
   animation: pulse 1.05s infinite ease-in-out, shake 220ms infinite;
 }
-
 @keyframes shake{
-  0%{ transform: rotate(-45deg) translate(0,0) scale(1); }
-  25%{ transform: rotate(-45deg) translate(1px,-1px) scale(1.02); }
-  50%{ transform: rotate(-45deg) translate(-1px,1px) scale(1.03); }
-  75%{ transform: rotate(-45deg) translate(1px,1px) scale(1.02); }
-  100%{ transform: rotate(-45deg) translate(0,0) scale(1); }
+  0%{ transform: translate(0,0) rotate(0deg) scale(1); }
+  25%{ transform: translate(1px,-1px) rotate(-2deg) scale(1.02); }
+  50%{ transform: translate(-1px,1px) rotate(2deg) scale(1.03); }
+  75%{ transform: translate(1px,1px) rotate(-1deg) scale(1.02); }
+  100%{ transform: translate(0,0) rotate(0deg) scale(1); }
 }
 
-/* buttons row */
 .row{
   display:flex;
   gap:10px;
@@ -197,7 +175,7 @@ body{
   border-radius:14px;
   border:none;
   cursor:pointer;
-  font-weight:800;
+  font-weight:900;
   background:linear-gradient(135deg,var(--pink),var(--vio));
   color:white;
   min-height:44px;
@@ -225,7 +203,7 @@ body{
 }
 
 /* click flash */
-.flash {
+.flash{
   position:absolute;
   width:14px; height:14px;
   border-radius:50%;
@@ -233,7 +211,6 @@ body{
   background: radial-gradient(circle, rgba(255,255,255,.95), rgba(255,77,141,.55), rgba(138,92,255,0));
   transform: translate(-50%,-50%);
   animation: flashPop 420ms ease-out forwards;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
 }
 @keyframes flashPop{
   0%{ opacity:0; transform: translate(-50%,-50%) scale(.4); }
@@ -242,7 +219,7 @@ body{
 }
 
 /* trail */
-.trail {
+.trail{
   position:absolute;
   width:6px; height:6px;
   border-radius:50%;
@@ -257,49 +234,7 @@ body{
   to{ opacity:0; transform: translate(-50%,-50%) scale(2.6); }
 }
 
-/* ✅ iPhone-safe burst hearts with your photo */
-.burst-heart{
-  position:absolute;
-  width:16px;
-  height:14px;
-  background: url("IMG_1218.png") center/cover no-repeat;
-  transform: rotate(-45deg);
-  animation: burstFly 900ms ease-out forwards;
-  pointer-events:none;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,.35));
-}
-
-.burst-heart::before,
-.burst-heart::after{
-  content:"";
-  position:absolute;
-  width:16px;
-  height:14px;
-  background: url("IMG_1218.png") center/cover no-repeat;
-  border-radius:50%;
-}
-
-.burst-heart::before{
-  top:-7px;
-  left:0;
-}
-
-.burst-heart::after{
-  left:7px;
-  top:0;
-}
-
-@keyframes burstFly{
-  to{
-    opacity:0;
-    transform:
-      rotate(-45deg)
-      translate(var(--dx), var(--dy))
-      scale(.85);
-  }
-}
-
-/* overlay + modal */
+/* overlays */
 .overlay{
   position:fixed;
   inset:0;
@@ -307,7 +242,7 @@ body{
   place-items:center;
   padding:22px;
   background:rgba(0,0,0,.60);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   z-index:10;
 }
 
@@ -328,7 +263,8 @@ body{
 }
 
 .mTitle{ margin:0 0 8px; font-size: clamp(26px,4vw,34px); }
-.mText{ margin:0 0 12px; color:var(--muted); line-height:1.45; }
+.mText{ margin:0 0 10px; color:var(--muted); line-height:1.45; }
+.tiny{ margin-top:8px; font-size:12px; color: rgba(255,255,255,.7); min-height: 16px; }
 
 .buttons{
   display:flex;
@@ -337,31 +273,21 @@ body{
   align-items:center;
 }
 
-/* ✅ YES button as pulsing heart with your photo */
-.heartBtn{
-  width:62px;
-  height:56px;
+/* YES button */
+.yesBtn{
+  padding:12px 16px;
+  border-radius:14px;
   border:none;
   cursor:pointer;
-  background: url("IMG_1218.png") center/cover no-repeat;
-  transform: rotate(-45deg);
-  filter: drop-shadow(0 0 18px rgba(255,77,141,.55));
-  animation: pulse 1.05s infinite ease-in-out;
-  position:relative;
+  font-weight:1000;
+  color:white;
+  background: linear-gradient(135deg, var(--mint), var(--vio));
+  min-height:44px;
+  flex:1;
 }
 
-.heartBtn::before,
-.heartBtn::after{
-  content:"";
-  position:absolute;
-  width:62px;
-  height:56px;
-  background: url("IMG_1218.png") center/cover no-repeat;
-  border-radius:50%;
-}
-
-.heartBtn::before{ top:-28px; left:0; }
-.heartBtn::after{ top:0; left:28px; }
+/* “Нет” */
+.noBtn{ flex:1; }
 
 /* star burst on modal open */
 .overlay.showFlash::before{
@@ -378,28 +304,35 @@ body{
   100%{ opacity:0; transform: scale(1.25); }
 }
 
-.final{
-  margin-top:14px;
-  text-align:center;
-  animation: popIn .5s ease;
+/* raining hearts & flowers */
+.rainItem{
+  position:fixed;
+  top:-60px;
+  pointer-events:none;
+  animation: fall linear forwards;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  z-index: 12;
 }
 
-/* petals */
-.petal{
-  position:fixed;
-  top:-40px;
-  pointer-events:none;
-  animation:fall linear forwards;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+.rainHeart{
+  width:38px;
+  height:34px;
 }
+.rainHeart svg{ width:100%; height:100%; display:block; }
+
 @keyframes fall{
-  to{ transform: translateY(110vh) rotate(360deg); }
+  to{
+    transform: translateY(115vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 @media (max-width:520px){
   .row{ flex-direction:column; }
   .btn{ width:100%; }
+  .yesBtn,.noBtn{ flex: 1 1 100%; }
 }
+
 @media (prefers-reduced-motion: reduce){
-  .heart, .heartBtn{ animation:none; }
+  .photoHeart{ animation:none; }
 }
