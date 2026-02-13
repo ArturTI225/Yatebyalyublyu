@@ -1,400 +1,117 @@
-:root{
-  --bg1:#0b0b14;
-  --bg2:#14081d;
-  --card: rgba(255,255,255,.08);
-  --stroke: rgba(255,255,255,.14);
-  --text: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.72);
-  --pink:#ff4d8d;
-  --vio:#8a5cff;
-  --mint:#45ffb5;
-  --shadow: 0 20px 70px rgba(0,0,0,.55);
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
 body{
   margin:0;
-  color:var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
-  background:
-    radial-gradient(1200px 800px at 15% 10%, rgba(255,77,141,.18), transparent 60%),
-    radial-gradient(1000px 700px at 90% 20%, rgba(138,92,255,.20), transparent 60%),
-    radial-gradient(900px 700px at 60% 90%, rgba(69,255,181,.12), transparent 70%),
-    linear-gradient(160deg, var(--bg1), var(--bg2));
+  background: radial-gradient(circle at top, #1b1c2e, #0d0e1a 70%);
+  color:white;
+  font-family: system-ui, -apple-system, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
   overflow:hidden;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Летающие сердечки-фон (очень лёгкий, ненавязчивый) */
-body::before{
-  content:"💖  💘  💗  💞  💓  💝";
-  position:fixed;
-  left:10%;
-  top:105%;
-  font-size:44px;
-  opacity:.05;
-  pointer-events:none;
-  filter: blur(.2px);
-  animation: floatUp 18s linear infinite;
-  white-space: nowrap;
-}
-body::after{
-  content:"💘  💞  💗  💖  💓  💝";
-  position:fixed;
-  left:55%;
-  top:110%;
-  font-size:38px;
-  opacity:.04;
-  pointer-events:none;
-  animation: floatUp2 22s linear infinite;
-  white-space: nowrap;
-}
-@keyframes floatUp{
-  from{ transform: translateY(0); }
-  to{ transform: translateY(-135vh); }
-}
-@keyframes floatUp2{
-  from{ transform: translateY(0); }
-  to{ transform: translateY(-150vh); }
-}
-
-.bg{
-  position:fixed; inset:0; pointer-events:none;
-  background:
-    radial-gradient(900px 600px at 30% 20%, rgba(255,255,255,.05), transparent 60%),
-    radial-gradient(700px 520px at 80% 80%, rgba(255,255,255,.04), transparent 60%);
-}
-
-.wrap{
-  min-height:100%;
-  display:grid;
-  place-items:center;
-  padding: 22px;
+.container{
+  text-align:center;
+  padding:20px;
 }
 
 .card{
-  width:min(760px, 100%);
-  padding: 22px 20px 18px;
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-}
-
-.top{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(0,0,0,.18);
-  color: rgba(255,255,255,.86);
-  font-weight:700;
-  font-size:12px;
-}
-.pill.ghost{opacity:.9}
-
-.title{
-  margin: 16px 0 6px;
-  font-size: clamp(26px, 4vw, 40px);
-  line-height:1.1;
-  letter-spacing:.2px;
-}
-
-.from{
-  margin: 0 0 10px;
-  color: rgba(255,255,255,.86);
-  font-weight: 750;
-  letter-spacing: .2px;
-}
-
-.subtitle{
-  margin: 0 0 14px;
-  color: var(--muted);
-  line-height:1.45;
-}
-
-.arena{
-  position:relative;
-  height: clamp(220px, 38vh, 320px);
-  border-radius: 18px;
-  border: 1px dashed rgba(255,255,255,.20);
-  background:
-    radial-gradient(700px 300px at 20% 30%, rgba(255,77,141,.12), transparent 65%),
-    radial-gradient(600px 340px at 80% 80%, rgba(138,92,255,.12), transparent 65%),
-    rgba(255,255,255,.06);
-  overflow:hidden;
-}
-
-.arenaHint{
-  position:absolute;
-  left:14px; bottom:12px;
-  font-size: 12px;
-  color: rgba(255,255,255,.72);
-  background: rgba(0,0,0,.18);
+  background: rgba(255,255,255,.06);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.12);
-  padding: 6px 10px;
-  border-radius: 999px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  animation: breathe 6s infinite ease-in-out;
 }
 
-/* ===== Сердце-кнопка (работает в iOS, без clip-path) ===== */
+@keyframes breathe{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(.995); }
+}
 
-.heart{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform: translate(-50%,-50%);
-  width:84px;
-  height:84px;
+h1{
+  margin-top:0;
+}
+
+.text{
+  margin:20px 0;
+  font-size:18px;
+  line-height:1.6;
+  min-height:60px;
+  transition: opacity .5s ease;
+}
+
+button{
+  padding:12px 25px;
   border:none;
-  background:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4d8d,#8a5cff);
+  color:white;
+  font-size:16px;
   cursor:pointer;
-  -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 18px 30px rgba(0,0,0,.45));
+  transition:.3s;
 }
 
-.heart-bg{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:60px;
-  height:60px;
-  transform: translate(-50%,-45%) rotate(45deg);
-  background: linear-gradient(135deg, var(--pink), var(--vio));
-  border-radius: 14px;
-
-  /* Свечение */
-  box-shadow:
-    0 0 20px rgba(255, 80, 150, .55),
-    0 0 40px rgba(138, 92, 255, .35);
-
-  /* Пульсация */
-  animation: heartBeat 1.8s infinite ease-in-out;
+button:hover{
+  transform:scale(1.05);
 }
 
-/* “пузики” сердца */
-.heart-bg::before,
-.heart-bg::after{
-  content:"";
-  position:absolute;
-  width:60px;
-  height:60px;
-  background: inherit;
-  border-radius: 999px;
+.signature{
+  margin-top:20px;
+  font-size:14px;
+  opacity:.7;
 }
-.heart-bg::before{ left:-30px; top:0; }
-.heart-bg::after{ left:0; top:-30px; }
-
-@keyframes heartBeat {
-  0% { transform: translate(-50%,-45%) rotate(45deg) scale(1); }
-  25% { transform: translate(-50%,-45%) rotate(45deg) scale(1.06); }
-  50% { transform: translate(-50%,-45%) rotate(45deg) scale(1); }
-  75% { transform: translate(-50%,-45%) rotate(45deg) scale(1.08); }
-  100% { transform: translate(-50%,-45%) rotate(45deg) scale(1); }
-}
-
-/* Фото внутри сердца */
-.face{
-  position:absolute;
-  left:50%;
-  top:43%;
-  transform: translate(-50%,-50%);
-  width:46px;
-  height:46px;
-  border-radius:999px;
-  object-fit:cover;
-  border:3px solid rgba(255,255,255,.95);
-  box-shadow: 0 10px 18px rgba(0,0,0,.35);
-  z-index: 2;
-  transition: transform .16s ease;
-}
-.heart:hover .face{ transform: translate(-50%,-50%) scale(1.08); }
-.heart:active .face{ transform: translate(-50%,-50%) scale(1.02); }
-
-.row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  margin-top: 12px;
-}
-.row.center{justify-content:center}
-
-.btn{
-  border:none;
-  cursor:pointer;
-  padding: 12px 14px;
-  border-radius: 14px;
-  font-weight:800;
-  letter-spacing:.2px;
-  background: linear-gradient(135deg, var(--pink), var(--vio));
-  color: rgba(255,255,255,.95);
-  transition: transform .12s ease, filter .2s ease;
-  min-height: 44px;
-}
-.btn:hover{filter:brightness(1.06)}
-.btn:active{transform: translateY(1px) scale(.99)}
-
-.btn.ghost{
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.14);
-}
-
-/* Анимированный градиент для "Да" */
-.btn.yes{
-  background: linear-gradient(270deg, #45ffb5, #8a5cff, #ff4d8d);
-  background-size: 600% 600%;
-  animation: gradientMove 6s ease infinite;
-  color:#061016;
-}
-@keyframes gradientMove{
-  0%{ background-position:0% 50% }
-  50%{ background-position:100% 50% }
-  100%{ background-position:0% 50% }
-}
-
-.mini{
-  margin: 12px 0 0;
-  font-size: 13px;
-  line-height:1.35;
-}
-.center{text-align:center}
-.muted{color: var(--muted)}
-
-/* ===== Modal ===== */
 
 .overlay{
-  position:fixed; inset:0;
-  display:grid; place-items:center;
-  padding:22px;
-  background: rgba(0,0,0,.60);
-  opacity:0; pointer-events:none;
-  transition: opacity .22s ease;
-
-  /* Premium blur */
-  backdrop-filter: blur(8px);
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(8px);
+  display:none;
+  justify-content:center;
+  align-items:center;
 }
-
-.overlay.show{opacity:1; pointer-events:auto}
 
 .modal{
-  width:min(760px, 100%);
-  border-radius: 24px;
-  border:1px solid rgba(255,255,255,.16);
-  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.07));
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow);
-  padding: 18px 16px 14px;
-  position:relative;
-
-  /* Анимация появления */
-  transform: scale(.92);
-  opacity: .98;
-  transition: transform .25s ease, opacity .25s ease;
-}
-.overlay.show .modal{
-  transform: scale(1);
-  opacity: 1;
+  background:rgba(255,255,255,.08);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 20px 70px rgba(0,0,0,.6);
+  animation: pop .4s ease;
 }
 
-.qTitle{
-  margin:0 0 8px;
-  font-size: 26px;
-}
-.qText{
-  margin:0 0 6px;
-  color: var(--muted);
-  line-height:1.45;
+@keyframes pop{
+  from{ transform:scale(.8); opacity:0; }
+  to{ transform:scale(1); opacity:1; }
 }
 
-/* Анимация pop-in у блока результата */
-.result{
-  margin-top:14px;
-  animation: popIn .5s ease;
-}
-@keyframes popIn{
-  from{ transform: scale(.8); opacity:0; }
-  to{ transform: scale(1); opacity:1; }
+.buttons{
+  margin-top:20px;
 }
 
-.bigPic{
-  width:min(320px, 80%);
-  margin: 0 auto;
-  border-radius: 26px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.16);
-  background: rgba(0,0,0,.10);
-  box-shadow: 0 18px 50px rgba(0,0,0,.45);
-}
-.bigPic img{
-  width:100%;
-  height:auto;
-  display:block;
+.yes{
+  background:linear-gradient(135deg,#45ffb5,#8a5cff);
+  margin-right:10px;
 }
 
-/* Confetti */
-.confetti{
-  position:fixed; inset:0;
+.no{
+  background:rgba(255,255,255,.15);
+}
+
+.final{
+  margin-top:20px;
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 70% 40%, white, transparent),
+    radial-gradient(1px 1px at 40% 80%, white, transparent);
+  opacity:.15;
   pointer-events:none;
-  overflow:hidden;
-  z-index: 10;
-}
-.confetti i{
-  position:absolute;
-  width:10px; height:16px;
-  border-radius:3px;
-  opacity:.92;
-  transform: translate3d(0,-20px,0) rotate(0deg);
-  animation: fall linear forwards;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-}
-@keyframes fall{
-  to{
-    transform: translate3d(var(--dx), calc(100vh + 60px), 0) rotate(var(--rot));
-  }
-}
-
-.btn:focus-visible, .heart:focus-visible{
-  outline:2px solid rgba(255,255,255,.9);
-  outline-offset:3px;
-}
-
-/* Phone layout */
-@media (max-width: 520px){
-  .wrap{padding: 18px}
-  .card{padding: 20px 18px 16px}
-  .subtitle{font-size:14px}
-
-  .row{
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .btn{width:100%}
-
-  .arenaHint{
-    left:10px; right:10px; bottom:10px;
-    text-align:center;
-  }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  body::before, body::after{ animation:none; }
-  .heart-bg{ animation:none; }
-  .btn.yes{ animation:none; }
-  .modal{ transition:none; transform:none; }
-  .result{ animation:none; }
-  .btn, .face{ transition:none; }
 }
