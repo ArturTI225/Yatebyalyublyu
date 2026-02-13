@@ -1,62 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для моей самой любимой звёздочке, Алиске 💫</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Алиса ✨</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="stars" aria-hidden="true"></div>
 
-<div class="stars"></div>
+  <button id="musicToggle" class="music" type="button">🔈 Музыка</button>
+  <audio id="music" src="music.mp3" loop preload="auto"></audio>
 
-<button id="musicToggle" class="music">🔈 Музыка</button>
+  <main class="wrap">
+    <section class="card">
+      <div class="top">
+        <div class="pill">14 февраля 💌</div>
+        <div class="pill ghost">Сердца: <span id="score">0</span> / 7</div>
+      </div>
 
-<div class="container">
+      <h1 class="title">Алиса, привет ✨</h1>
+      <p class="sub">Маленький квест: поймай 7 сердечек. После этого — важный вопрос 😉</p>
 
-  <div class="card" id="card">
-    <h1>Алиса ✨</h1>
+      <div class="arena" id="arena">
+        <div class="arenaNote" id="arenaNote">Кликай по сердечку, пока оно не убежало!</div>
+        <div class="heart" id="heart" aria-label="сердечко"></div>
+      </div>
 
-    <p class="text">
-      Поймай 7 сердечек 💖<br>
-      Потом будет важный вопрос…
-    </p>
+      <div class="row">
+        <button class="btn ghost" id="resetBtn" type="button">↻ Сброс</button>
+        <button class="btn" id="skipBtn" type="button">Пропустить игру</button>
+      </div>
 
-    <div class="arena" id="arena">
-      <div class="heart" id="heart"></div>
-    </div>
+      <div class="hintLine" id="hintLine">Подсказка: чем ближе к победе — тем быстрее 💫</div>
+      <div class="signature">— от медвежонка ❤️🐻</div>
+    </section>
+  </main>
 
-    <div class="score">Сердца: <span id="score">0</span> / 7</div>
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h2 class="mTitle">Есть один вопрос…</h2>
+      <p class="mText">Алиса, хочешь стать моей валентинкой? 💖</p>
 
-    <div class="signature">
-      — от медвежонка 🐻
+      <div class="buttons">
+        <button id="yesBtn" class="heartBtn" type="button" aria-label="Да"></button>
+        <button id="noBtn" class="btn ghost noBtn" type="button">Нет</button>
+      </div>
+
+      <div class="final" id="final" hidden>
+        <h3>Спасибо, что сказала «да» 💞</h3>
+        <p>Этот момент я запомню.</p>
+        <small>А теперь… закрой глаза на пару секунд 🌷</small>
+      </div>
     </div>
   </div>
 
-</div>
-
-<div class="overlay" id="overlay">
-  <div class="flash"></div>
-
-  <div class="modal">
-    <h2>Есть один вопрос…</h2>
-    <p>Алиса, хочешь стать моей валентинкой? 💖</p>
-
-    <div class="buttons">
-      <button id="yesBtn" class="heartBtn"></button>
-      <button id="noBtn" class="no">Нет</button>
-    </div>
-
-    <div class="final" id="final" hidden>
-      <h3>Спасибо, что сказала «да» 💞</h3>
-      <p>Этот момент я запомню.</p>
-      <small>А теперь… закрой глаза на пару секунд 🌷</small>
-    </div>
-  </div>
-</div>
-
-<audio id="music" src="music.mp3" loop></audio>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
